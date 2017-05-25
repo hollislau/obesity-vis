@@ -12,28 +12,45 @@ class Chart extends Component {
   constructor(props) {
     super(props);
 
+    this.srcData = [];
     this.state = {
-      data: null
+      chartData: null,
+      year: '2013'
     };
   }
 
-  fetchData() {
-    d3.csv('./obesity_us_data.csv', (err, data) => {
-      if (err) console.log(`Unable to fetch data: ${ err }`);
+  fetchSrcData = () => {
+    d3.csv('./us_data.csv', (err, data) => {
+      if (err) return console.log(`Unable to fetch source data: ${ err }`);
 
-      this.setState({ data });
+      this.srcData = data;
+      this.setChartData();
     });
   }
 
+  filterDataByYear = () => {
+    const { year } = this.state;
+
+    return this.srcData.filter(row => row.year === year);
+  }
+
+  setChartData = () => {
+    this.setState({ chartData: this.filterDataByYear() });
+  }
+
   componentDidMount() {
-    this.fetchData();
+    this.fetchSrcData();
   }
 
   render() {
-    const { data } = this.state;
+    const { chartData, year } = this.state;
 
     return (
-      data && <Histogram />
+      chartData &&
+      <div>
+        <h1>Prevalence of overweight individuals in the U.S. in { year }, by age</h1>
+        <Histogram { ...this.state } { ...styles }/>
+      </div>
     );
   }
 }
