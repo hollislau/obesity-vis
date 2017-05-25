@@ -8,14 +8,17 @@ const styles = {
   padding: 30
 };
 
+let srcData;
+
 class Chart extends Component {
   constructor(props) {
     super(props);
 
-    this.srcData = [];
     this.state = {
       chartData: null,
-      year: '2013'
+      year: '2013',
+      sex: 'both',
+      metric: 'overweight'
     };
   }
 
@@ -23,19 +26,25 @@ class Chart extends Component {
     d3.csv('./us_data.csv', (err, data) => {
       if (err) return console.log(`Unable to fetch source data: ${ err }`);
 
-      this.srcData = data;
+      srcData = data;
       this.setChartData();
     });
   }
 
-  filterDataByYear = () => {
-    const { year } = this.state;
+  filterData = () => {
+    const { year, sex, metric } = this.state;
 
-    return this.srcData.filter(row => row.year === year);
+    return srcData.filter(
+      row => (
+        row.year === year &&
+        row.sex === sex &&
+        row.metric === metric
+      )
+    );
   }
 
   setChartData = () => {
-    this.setState({ chartData: this.filterDataByYear() });
+    this.setState({ chartData: this.filterData() });
   }
 
   componentDidMount() {
@@ -49,7 +58,10 @@ class Chart extends Component {
       chartData &&
       <div>
         <h1>Prevalence of overweight individuals in the U.S. in { year }, by age</h1>
-        <Histogram { ...this.state } { ...styles }/>
+        <Histogram
+          chartData={ chartData }
+          { ...styles }
+        />
       </div>
     );
   }
