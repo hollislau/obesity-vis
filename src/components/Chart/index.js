@@ -22,9 +22,9 @@ class Chart extends Component {
     };
   }
 
-  fetchSrcData = () => {
+  loadSrcData = () => {
     d3.csv('./us_data.csv', (err, data) => {
-      if (err) return console.log(`Unable to fetch source data: ${ err }`);
+      if (err) return console.log(`Unable to load source data: ${ err }`);
 
       srcData = data;
       this.setChartData();
@@ -48,7 +48,7 @@ class Chart extends Component {
   }
 
   componentDidMount() {
-    this.fetchSrcData();
+    this.loadSrcData();
   }
 
   render() {
@@ -56,13 +56,13 @@ class Chart extends Component {
 
     return (
       chartData &&
-      <div>
-        <h1>Prevalence of overweight individuals in the U.S. in { year }, by age</h1>
+      <section>
+        <h2>Prevalence of overweight individuals in the U.S. in { year }, by age</h2>
         <Histogram
           chartData={ chartData }
           { ...styles }
         />
-      </div>
+      </section>
     );
   }
 }
