@@ -9,7 +9,7 @@ const renderBars = ({ height, padding, xScale, yScale }) =>
       y: yScale(d.mean),
       width: xScale.bandwidth(),
       height: height - padding - yScale(d.mean),
-      key: i
+      key: d.age_start
     };
 
     return <rect { ...barProps } />;
