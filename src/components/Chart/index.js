@@ -38,7 +38,8 @@ class Chart extends Component {
       row => (
         row.year === year &&
         row.sex === sex &&
-        row.metric === metric
+        row.metric === metric &&
+        row.age_group_id <= 34
       )
     );
   }
