@@ -1,6 +1,7 @@
 import React from 'react';
 import * as d3 from 'd3';
 import DataBars from '../DataBars';
+import XYAxis from '../XYAxis';
 
 const yMax = data => d3.max(data, d => d.mean);
 
@@ -28,6 +29,10 @@ const Histogram = props => {
       height={ height }
     >
       <DataBars
+        { ...props }
+        { ...scales }
+      />
+      <XYAxis
         { ...props }
         { ...scales }
       />
