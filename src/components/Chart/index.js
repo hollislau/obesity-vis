@@ -3,8 +3,8 @@ import * as d3 from 'd3';
 import Histogram from '../Histogram';
 
 const styles = {
-  width: 600,
-  height: 300,
+  width: 700,
+  height: 350,
   padding: 30
 };
 
@@ -35,11 +35,11 @@ class Chart extends Component {
     const { year, sex, metric } = this.state;
 
     return srcData.filter(
-      row => (
-        row.year === year &&
-        row.sex === sex &&
-        row.metric === metric &&
-        row.age_group_id <= 34
+      item => (
+        item.year === year &&
+        item.sex === sex &&
+        item.metric === metric &&
+        item.age_group_id <= 34
       )
     );
   }

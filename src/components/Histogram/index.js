@@ -9,8 +9,8 @@ const xScale = props => {
 
   return d3.scaleBand()
     .domain(chartData.map(d => d.age_start))
-    .rangeRound([padding, width - padding * 2])
-    .padding(0.01);
+    .rangeRound([padding, width - padding])
+    .padding(0.1);
 };
 
 const yScale = props => {
@@ -18,7 +18,7 @@ const yScale = props => {
 
   return d3.scaleLinear()
     .domain([0, yMax(chartData)])
-    .range([height - padding * 2, padding]);
+    .range([height - padding, padding]);
 };
 
 const Histogram = props => {
