@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import Histogram from '../Histogram';
 
 const styles = {
-  width: 500,
+  width: 600,
   height: 300,
   padding: 30
 };

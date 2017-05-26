@@ -1,8 +1,9 @@
 import React from 'react';
+import './index.css';
 
-const DataBars = () => {
+const DataBars = props => {
   return (
-    <div>Data bars</div>
+    <g></g>
   );
 }
 
