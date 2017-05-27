@@ -16,7 +16,7 @@ const yScale = ({ chartData, height, padding }) =>
     .domain([0, yMax(chartData)])
     .range([height - padding, padding]);
 
-const Histogram = props => {
+const BarChart = props => {
   const { width, height } = props;
   const scales = {
     xScale: xScale(props),
@@ -40,4 +40,4 @@ const Histogram = props => {
   );
 };
 
-export default Histogram;
+export default BarChart;

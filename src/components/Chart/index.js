@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import Histogram from '../Histogram';
+import BarChart from '../BarChart';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
 
@@ -84,7 +84,7 @@ class Chart extends Component {
       chartData &&
       <section>
         <h2>Prevalence of { metric } { sexMap[sex] } in the U.S. in { year }, by age</h2>
-        <Histogram
+        <BarChart
           chartData={ chartData }
           { ...styles }
         />
