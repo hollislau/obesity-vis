@@ -14,8 +14,7 @@ class Chart extends Component {
       chartData: null,
       year: '2013',
       sex: 'both',
-      metric: 'overweight',
-      showObesity: false
+      metric: 'overweight'
     };
   }
 
@@ -49,18 +48,18 @@ class Chart extends Component {
     const { target } = e;
     const { type, name } = target;
     const isCheckbox = type === 'checkbox';
-    const value = isCheckbox ? target.checked : target.value;
-    const updatedState = { [name]: value };
+
+    let value = isCheckbox ? target.checked : target.value;
 
     if (isCheckbox) {
       if (value) {
-        updatedState.metric = 'obese';
+        value = 'obese';
       } else {
-        updatedState.metric = 'overweight';
+        value = 'overweight';
       }
     }
 
-    this.setState(updatedState, this.setChartData);
+    this.setState({ [name]: value }, this.setChartData);
   }
 
   componentDidMount() {
@@ -68,7 +67,7 @@ class Chart extends Component {
   }
 
   render() {
-    const { chartData, year, sex, metric, showObesity } = this.state;
+    const { chartData, year, sex, metric } = this.state;
     const sexMap = {
       male: 'men',
       female: 'women',
@@ -90,8 +89,8 @@ class Chart extends Component {
           { ...styles }
         />
         <Checkbox
-          name='showObesity'
-          checked={ showObesity }
+          name='metric'
+          checked={ metric }
           onChange={ this.handleChange }
         >
           Obesity only

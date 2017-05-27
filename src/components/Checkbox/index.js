@@ -7,7 +7,7 @@ const Checkbox = ({ name, checked, onChange, children }) =>
       <input
         name={ name }
         type='checkbox'
-        checked={ checked }
+        checked={ checked === 'obese' }
         onChange={ onChange }
       />
     </label>
