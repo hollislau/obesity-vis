@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import Histogram from '../Histogram';
 import Checkbox from '../Checkbox';
+import Radio from '../Radio';
 
 let srcData;
 
@@ -78,6 +79,7 @@ class Chart extends Component {
       height: 300,
       padding: 40
     };
+    const radioList = ['Male', 'Female', 'Both'];
 
     return (
       chartData &&
@@ -94,6 +96,12 @@ class Chart extends Component {
         >
           Obesity only
         </Checkbox>
+        <Radio
+          list={ radioList }
+          name='sex'
+          selected={ sex }
+          onChange={ this.handleChange }
+        />
       </section>
     );
   }
