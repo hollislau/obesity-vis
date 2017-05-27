@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import './index.css';
 
 class Axis extends Component {
   renderAxis = () => {
@@ -19,6 +20,7 @@ class Axis extends Component {
   render() {
     return (
       <g
+        className='axis'
         ref='axis'
         transform={ this.props.translate }
       >

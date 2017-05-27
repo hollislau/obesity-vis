@@ -3,8 +3,8 @@ import * as d3 from 'd3';
 import Histogram from '../Histogram';
 
 const styles = {
-  width: 700,
-  height: 350,
+  width: 600,
+  height: 300,
   padding: 40
 };
 
@@ -88,15 +88,17 @@ class Chart extends Component {
           chartData={ chartData }
           { ...styles }
         />
-      <label>
-        Obesity only
-        <input
-          name='showObesity'
-          type='checkbox'
-          checked={ showObesity }
-          onChange={ this.handleChange }
-        />
-      </label>
+      <form>
+        <label>
+          Obesity only
+          <input
+            name='showObesity'
+            type='checkbox'
+            checked={ showObesity }
+            onChange={ this.handleChange }
+          />
+        </label>
+      </form>
       </section>
     );
   }
