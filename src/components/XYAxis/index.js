@@ -1,16 +1,15 @@
 import React from 'react';
+import * as d3 from 'd3';
 import Axis from '../Axis';
 
 const XYAxis = ({ height, padding, xScale, yScale }) => {
   const xSettings = {
     translate: `translate(0, ${ height - padding })`,
-    scale: xScale,
-    orient: 'bottom'
+    axis: d3.axisBottom(xScale)
   };
   const ySettings = {
     translate: `translate(${ padding }, 0)`,
-    scale: yScale,
-    orient: 'left'
+    axis: d3.axisLeft(yScale)
   };
 
   return (
