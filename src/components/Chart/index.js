@@ -90,7 +90,8 @@ class Chart extends Component {
         />
         <Checkbox
           name='metric'
-          checked={ metric }
+          selected={ metric }
+          setting='obese'
           onChange={ this.handleChange }
         >
           Obesity only

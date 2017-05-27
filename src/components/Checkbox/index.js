@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Checkbox = ({ name, checked, onChange, children }) =>
+const Checkbox = ({ name, selected, setting, onChange, children }) =>
   <form>
     <label>
       { children }
       <input
         name={ name }
         type='checkbox'
-        checked={ checked === 'obese' }
+        checked={ selected === setting }
         onChange={ onChange }
       />
     </label>
