@@ -7,3 +7,7 @@ body {
 h2 {
   font-size: 1.2rem;
 }
+
+label {
+  font-size: 0.9rem;
+}

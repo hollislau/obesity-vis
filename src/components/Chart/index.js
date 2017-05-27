@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import Histogram from '../Histogram';
-
-const styles = {
-  width: 600,
-  height: 300,
-  padding: 40
-};
-
-const sexMap = {
-  male: 'men',
-  female: 'women',
-  both: 'individuals'
-};
+import Checkbox from '../Checkbox';
 
 let srcData;
 
@@ -79,6 +68,16 @@ class Chart extends Component {
 
   render() {
     const { chartData, year, sex, metric, showObesity } = this.state;
+    const sexMap = {
+      male: 'men',
+      female: 'women',
+      both: 'individuals'
+    };
+    const styles = {
+      width: 600,
+      height: 300,
+      padding: 40
+    };
 
     return (
       chartData &&
@@ -88,17 +87,13 @@ class Chart extends Component {
           chartData={ chartData }
           { ...styles }
         />
-      <form>
-        <label>
+        <Checkbox
+          name='showObesity'
+          checked={ showObesity }
+          onChange={ this.handleChange }
+        >
           Obesity only
-          <input
-            name='showObesity'
-            type='checkbox'
-            checked={ showObesity }
-            onChange={ this.handleChange }
-          />
-        </label>
-      </form>
+        </Checkbox>
       </section>
     );
   }
