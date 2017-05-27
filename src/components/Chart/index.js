@@ -5,7 +5,7 @@ import Histogram from '../Histogram';
 const styles = {
   width: 700,
   height: 350,
-  padding: 30
+  padding: 40
 };
 
 let srcData;
