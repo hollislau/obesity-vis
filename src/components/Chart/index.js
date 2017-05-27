@@ -78,7 +78,7 @@ class Chart extends Component {
       height: 300,
       padding: 40
     };
-    const radioList = ['Male', 'Female', 'Both'];
+    const radioList = ['male', 'female', 'both'];
 
     return (
       chartData &&

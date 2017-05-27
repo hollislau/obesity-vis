@@ -1,17 +1,20 @@
 import React from 'react';
 
+const capitalize = str =>
+  str[0].toUpperCase() + str.slice(1);
+
 const Radio = ({ list, name, selected, onChange }) =>
   <form>
     { list.map(item =>
-      <label key={ item.toLowerCase() }>
+      <label key={ item }>
         <input
           name={ name }
           type='radio'
-          value={ item.toLowerCase() }
-          checked={ selected === item.toLowerCase() }
+          value={ item }
+          checked={ selected === item }
           onChange={ onChange }
         />
-        { item }
+        { capitalize(item) }
       </label>
     )}
   </form>;
