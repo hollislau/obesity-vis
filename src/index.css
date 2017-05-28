@@ -17,3 +17,7 @@ form {
 label {
   font-size: 0.9rem;
 }
+
+label:hover, input:hover, select:hover {
+  cursor: pointer;
+}

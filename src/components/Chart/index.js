@@ -19,7 +19,7 @@ class Chart extends Component {
       chartData: null,
       year: '2013',
       sex: 'both',
-      metric: 'overweight'
+      metric: 'obese'
     };
   }
 
@@ -63,9 +63,9 @@ class Chart extends Component {
 
     if (isCheckbox) {
       if (value) {
-        value = 'obese';
-      } else {
         value = 'overweight';
+      } else {
+        value = 'obese';
       }
     }
 
@@ -101,10 +101,10 @@ class Chart extends Component {
           <Checkbox
             name='metric'
             selected={ metric }
-            setting='obese'
+            setting='overweight'
             onChange={ this.handleChange }
           >
-            Obesity only
+            Overweight
           </Checkbox>
           <Radio
             list={ this.getInputOptions('sex') }

@@ -9,7 +9,7 @@ const XYAxis = ({ height, padding, xScale, yScale }) => {
   };
   const ySettings = {
     translate: `translate(${ padding }, 0)`,
-    axis: d3.axisLeft(yScale).ticks(10, '%')
+    axis: d3.axisLeft(yScale).ticks(6, '%')
   };
 
   return (
