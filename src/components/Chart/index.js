@@ -44,6 +44,11 @@ class Chart extends Component {
     );
   }
 
+  getInputOptions = (prop) =>
+    srcData.map(item => item[prop])
+      .sort()
+      .filter((item, i, arr) => item !== arr[i - 1]);
+
   setChartData = () => {
     this.setState({ chartData: this.filterData() });
   }
@@ -73,16 +78,15 @@ class Chart extends Component {
   render() {
     const { chartData, year, sex, metric } = this.state;
     const sexMap = {
-      male: 'men',
-      female: 'women',
+      male: 'males',
+      female: 'females',
       both: 'individuals'
     };
-    const styles = {
+    const chartStyles = {
       width: 600,
       height: 300,
       padding: 40
     };
-    const radioList = ['male', 'female', 'both'];
 
     return (
       chartData &&
@@ -90,7 +94,7 @@ class Chart extends Component {
         <h2>Prevalence of { metric } { sexMap[sex] } in the U.S. in { year }, by age</h2>
         <BarChart
           chartData={ chartData }
-          { ...styles }
+          { ...chartStyles }
         />
         <Checkbox
           name='metric'
@@ -101,7 +105,7 @@ class Chart extends Component {
           Obesity only
         </Checkbox>
         <Radio
-          list={ radioList }
+          list={ this.getInputOptions('sex') }
           name='sex'
           selected={ sex }
           onChange={ this.handleChange }
