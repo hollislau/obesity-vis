@@ -4,6 +4,10 @@ import BarChart from '../BarChart';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
 
+// TODO only use needed d3 modules
+// TODO create options object to pass as prop to BarChart
+// TODO make input options dynamic
+
 let srcData;
 
 class Chart extends Component {
