@@ -2,6 +2,7 @@ import React from 'react';
 import * as d3 from 'd3';
 import DataBars from '../DataBars';
 import XYAxis from '../XYAxis';
+import './index.css';
 
 const yMax = data => d3.max(data, d => d.mean);
 
@@ -25,6 +26,7 @@ const BarChart = props => {
 
   return (
     <svg
+      className='bar-chart'
       width={ width }
       height={ height }
     >

@@ -4,6 +4,7 @@ import BarChart from '../BarChart';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
 import Dropdown from '../Dropdown';
+import './index.css';
 
 // TODO only use needed d3 modules
 // TODO create options object to pass as prop to BarChart
@@ -45,7 +46,7 @@ class Chart extends Component {
     );
   }
 
-  getInputOptions = (prop) =>
+  getInputOptions = prop =>
     srcData.map(item => item[prop])
       .sort()
       .filter((item, i, arr) => item !== arr[i - 1]);
@@ -97,26 +98,28 @@ class Chart extends Component {
           chartData={ chartData }
           { ...chartStyles }
         />
-        <Checkbox
-          name='metric'
-          selected={ metric }
-          setting='obese'
-          onChange={ this.handleChange }
-        >
-          Obesity only
-        </Checkbox>
-        <Radio
-          list={ this.getInputOptions('sex') }
-          name='sex'
-          selected={ sex }
-          onChange={ this.handleChange }
-        />
-        <Dropdown
-          list={ this.getInputOptions('year') }
-          name='year'
-          value={ year }
-          onChange={ this.handleChange }
-        />
+        <div className='controls'>
+          <Checkbox
+            name='metric'
+            selected={ metric }
+            setting='obese'
+            onChange={ this.handleChange }
+          >
+            Obesity only
+          </Checkbox>
+          <Radio
+            list={ this.getInputOptions('sex') }
+            name='sex'
+            selected={ sex }
+            onChange={ this.handleChange }
+          />
+          <Dropdown
+            list={ this.getInputOptions('year') }
+            name='year'
+            value={ year }
+            onChange={ this.handleChange }
+          />
+        </div>
       </section>
     );
   }
