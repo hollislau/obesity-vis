@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Dropdown = ({ value, onChange }) =>
+const Dropdown = ({ list, name, value, onChange }) =>
   <form>
     <select
+      name={ name }
       value={ value }
       onChange={ onChange }
     >

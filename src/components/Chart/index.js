@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import BarChart from '../BarChart';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
+import Dropdown from '../Dropdown';
 
 // TODO only use needed d3 modules
 // TODO create options object to pass as prop to BarChart
@@ -108,6 +109,12 @@ class Chart extends Component {
           list={ this.getInputOptions('sex') }
           name='sex'
           selected={ sex }
+          onChange={ this.handleChange }
+        />
+        <Dropdown
+          list={ this.getInputOptions('year') }
+          name='year'
+          value={ year }
           onChange={ this.handleChange }
         />
       </section>
