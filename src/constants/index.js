@@ -22,5 +22,7 @@ export const CHART_OPTIONS = {
   chartPadding: 40,
   barPadding: 0.1,
   yAxisTicks: 6,
-  yAxisFormat: '%'
+  yAxisFormat: '%',
+  easeType: 'easeExp',
+  easeDuration: 1250
 };

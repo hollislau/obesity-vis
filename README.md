@@ -14,5 +14,6 @@ Built with D3.js and React, this static site uses publicly available data to vis
 <https://bl.ocks.org/mbostock>  
 <https://github.com/freddyrangel/playing-with-react-and-d3>  
 <https://square.github.io/intro-to-d3>  
+<https://bl.ocks.org/d3noob/1ea51d03775b9650e8dfd03474e202fe>
 <https://swizec.com/blog/using-d3js-transitions-in-react/swizec/6797>  
 <http://rajapradhan.com>  

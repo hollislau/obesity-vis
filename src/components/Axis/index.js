@@ -3,10 +3,19 @@ import * as d3 from 'd3';
 import './index.css';
 
 class Axis extends Component {
-  renderAxis = () => {
+  renderAxis = ease => {
+    const { easeType, easeDuration, axis } = this.props
     const node = this.refs.axis;
 
-    d3.select(node).call(this.props.axis);
+    if (ease) {
+      return d3.select(node)
+        .transition()
+        .ease(d3[easeType])
+        .duration(easeDuration)
+        .call(axis);
+    }
+
+    d3.select(node).call(axis);
   }
 
   componentDidMount() {
@@ -14,7 +23,7 @@ class Axis extends Component {
   }
 
   componentDidUpdate() {
-    this.renderAxis();
+    this.renderAxis('ease');
   }
 
   render() {
