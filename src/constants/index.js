@@ -17,7 +17,10 @@ export const SEX_MAP = {
 export const CHART_OPTIONS = {
   xProp: 'age_start',
   yProp: 'mean',
-  width: 600,
-  height: 300,
-  padding: 40
+  chartWidth: 600,
+  chartHeight: 300,
+  chartPadding: 40,
+  barPadding: 0.1,
+  yAxisTicks: 6,
+  yAxisFormat: '%'
 };

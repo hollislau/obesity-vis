@@ -16,7 +16,6 @@ import {
 import './index.css';
 
 // TODO only use needed d3 modules
-// TODO create options object to pass as prop to BarChart
 
 const capitalize = str =>
   str[0].toUpperCase() + str.slice(1);

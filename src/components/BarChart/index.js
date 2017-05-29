@@ -6,19 +6,19 @@ import './index.css';
 
 const yMax = (data, dataProp) => d3.max(data, d => d[dataProp]);
 
-const xScale = ({ chartData, xProp, width, padding }) =>
+const xScale = ({ chartData, xProp, chartWidth, chartPadding, barPadding }) =>
   d3.scaleBand()
     .domain(chartData.map(d => d[xProp]))
-    .rangeRound([padding, width - padding])
-    .padding(0.1);
+    .rangeRound([chartPadding, chartWidth - chartPadding])
+    .padding(barPadding);
 
-const yScale = ({ chartData, yProp, height, padding }) =>
+const yScale = ({ chartData, yProp, chartHeight, chartPadding }) =>
   d3.scaleLinear()
     .domain([0, yMax(chartData, yProp)])
-    .range([height - padding, padding]);
+    .range([chartHeight - chartPadding, chartPadding]);
 
 const BarChart = props => {
-  const { width, height } = props;
+  const { chartWidth, chartHeight } = props;
   const scales = {
     xScale: xScale(props),
     yScale: yScale(props)
@@ -27,8 +27,8 @@ const BarChart = props => {
   return (
     <svg
       className='bar-chart'
-      width={ width }
-      height={ height }
+      width={ chartWidth }
+      height={ chartHeight }
     >
       <DataBars
         { ...props }
