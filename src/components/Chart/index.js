@@ -4,10 +4,22 @@ import BarChart from '../BarChart';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
 import Dropdown from '../Dropdown';
+import {
+  DEFAULT_METRIC,
+  DEFAULT_SEX,
+  DEFAULT_YEAR,
+  ALT_METRIC,
+  DATA_URL,
+  SEX_MAP,
+  CHART_OPTIONS
+} from '../../constants';
 import './index.css';
 
 // TODO only use needed d3 modules
 // TODO create options object to pass as prop to BarChart
+
+const capitalize = str =>
+  str[0].toUpperCase() + str.slice(1);
 
 let srcData;
 
@@ -17,14 +29,14 @@ class Chart extends Component {
 
     this.state = {
       chartData: null,
-      year: '2013',
-      sex: 'both',
-      metric: 'obese'
+      metric: DEFAULT_METRIC,
+      sex: DEFAULT_SEX,
+      year: DEFAULT_YEAR
     };
   }
 
   loadSrcData = () => {
-    d3.csv('./us_data.csv', (err, data) => {
+    d3.csv(DATA_URL, (err, data) => {
       if (err) return console.log(`Unable to load source data: ${ err }`);
 
       srcData = data;
@@ -33,13 +45,13 @@ class Chart extends Component {
   }
 
   filterData = () => {
-    const { year, sex, metric } = this.state;
+    const { metric, sex, year } = this.state;
 
     return srcData.filter(
       item => (
-        item.year === year &&
-        item.sex === sex &&
         item.metric === metric &&
+        item.sex === sex &&
+        item.year === year &&
         item.age_group_id <= 34
       )
     );
@@ -63,9 +75,9 @@ class Chart extends Component {
 
     if (isCheckbox) {
       if (value) {
-        value = 'overweight';
+        value = ALT_METRIC;
       } else {
-        value = 'obese';
+        value = DEFAULT_METRIC;
       }
     }
 
@@ -77,37 +89,28 @@ class Chart extends Component {
   }
 
   render() {
-    const { chartData, year, sex, metric } = this.state;
-    const sexMap = {
-      male: 'males',
-      female: 'females',
-      both: 'individuals'
-    };
-    const chartStyles = {
-      width: 600,
-      height: 300,
-      padding: 40
-    };
+    const { chartData, metric, sex, year } = this.state;
 
     return (
       chartData &&
       <section>
-        <h2>Prevalence of { metric } { sexMap[sex] } in the U.S. in { year }, by age</h2>
+        <h2>Prevalence of { metric } { SEX_MAP[sex] } in the U.S. in { year }, by age</h2>
         <BarChart
           chartData={ chartData }
-          { ...chartStyles }
+          { ...CHART_OPTIONS }
         />
         <div className='controls'>
           <Checkbox
             name='metric'
             selected={ metric }
-            setting='overweight'
+            setting={ ALT_METRIC }
             onChange={ this.handleChange }
           >
-            Overweight
+            { capitalize(ALT_METRIC) }
           </Checkbox>
           <Radio
             list={ this.getInputOptions('sex') }
+            capitalize={ capitalize }
             name='sex'
             selected={ sex }
             onChange={ this.handleChange }

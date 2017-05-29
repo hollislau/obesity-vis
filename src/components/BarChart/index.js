@@ -4,17 +4,17 @@ import DataBars from '../DataBars';
 import XYAxis from '../XYAxis';
 import './index.css';
 
-const yMax = data => d3.max(data, d => d.mean);
+const yMax = (data, dataProp) => d3.max(data, d => d[dataProp]);
 
-const xScale = ({ chartData, width, padding }) =>
+const xScale = ({ chartData, xProp, width, padding }) =>
   d3.scaleBand()
-    .domain(chartData.map(d => d.age_start))
+    .domain(chartData.map(d => d[xProp]))
     .rangeRound([padding, width - padding])
     .padding(0.1);
 
-const yScale = ({ chartData, height, padding }) =>
+const yScale = ({ chartData, yProp, height, padding }) =>
   d3.scaleLinear()
-    .domain([0, yMax(chartData)])
+    .domain([0, yMax(chartData, yProp)])
     .range([height - padding, padding]);
 
 const BarChart = props => {

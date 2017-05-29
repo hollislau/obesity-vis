@@ -1,15 +1,15 @@
 import React from 'react';
 import './index.css';
 
-const renderBars = ({ height, padding, xScale, yScale }) =>
-  (d, i) => {
+const renderBars = ({ xProp, yProp, height, padding, xScale, yScale }) =>
+  d => {
     const barProps = {
       className: 'bar',
-      x: xScale(d.age_start),
-      y: yScale(d.mean),
+      x: xScale(d[xProp]),
+      y: yScale(d[yProp]),
       width: xScale.bandwidth(),
-      height: height - padding - yScale(d.mean),
-      key: d.age_start
+      height: height - padding - yScale(d[yProp]),
+      key: d[xProp]
     };
 
     return <rect { ...barProps } />;
