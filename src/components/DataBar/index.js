@@ -24,20 +24,21 @@ class DataBar extends Component {
       easeType,
       easeDuration
     } = nextProps;
-    const { d: dCurrent } = this.props;
+    const y = yScale(d[yProp]);
+    const height = chartHeight - chartPadding - y;
 
-    if (dCurrent[yProp] !== d[yProp]) {
+    if (this.state.height !== height) {
       let node = d3.select(this.bar);
 
       node.transition()
         .ease(d3[easeType])
         .duration(easeDuration)
-        .attr('y', yScale(d[yProp]))
-        .attr('height', chartHeight - chartPadding - yScale(d[yProp]))
+        .attr('y', y)
+        .attr('height', height)
         .on('end', () =>
           this.setState({
-            y: yScale(d[yProp]),
-            height: chartHeight - chartPadding - yScale(d[yProp])
+            y: y,
+            height: height
           }));
     }
   }
