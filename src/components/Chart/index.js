@@ -10,12 +10,15 @@ import {
   DEFAULT_YEAR,
   ALT_METRIC,
   DATA_URL,
+  SEX_ID,
+  YEAR_ID,
+  AGE_ID,
+  AGE_GROUP,
   SEX_MAP,
   CHART_OPTIONS
 } from '../../constants';
 import './index.css';
 
-// TODO move inputOptions to state?
 // TODO only use needed d3 modules
 // TODO add prop types
 // TODO add snapshot tests
@@ -31,6 +34,8 @@ class Chart extends Component {
 
     this.state = {
       chartData: null,
+      radioOptions: null,
+      dropdownOptions: null,
       metric: DEFAULT_METRIC,
       sex: DEFAULT_SEX,
       year: DEFAULT_YEAR
@@ -42,6 +47,10 @@ class Chart extends Component {
       if (err) return console.log(`Unable to load source data: ${ err }`);
 
       srcData = data;
+      this.setState({
+        radioOptions: this.getInputOptions(SEX_ID),
+        dropdownOptions: this.getInputOptions(YEAR_ID)
+      });
       this.setChartData();
     });
   }
@@ -54,7 +63,7 @@ class Chart extends Component {
         item.metric === metric &&
         item.sex === sex &&
         item.year === year &&
-        item.age_group_id <= 34
+        item[AGE_ID] <= AGE_GROUP
       )
     );
   }
@@ -91,10 +100,24 @@ class Chart extends Component {
   }
 
   render() {
-    const { chartData, metric, sex, year } = this.state;
+    const {
+      chartData,
+      radioOptions,
+      dropdownOptions,
+      metric,
+      sex,
+      year
+    } = this.state;
+
+    if (!chartData) {
+      return (
+        <section>
+          <h2>Loading chart...</h2>
+        </section>
+      );
+    }
 
     return (
-      chartData &&
       <section>
         <h2>Prevalence of { metric } { SEX_MAP[sex] } in the U.S. in { year }, by age</h2>
         <BarChart
@@ -111,14 +134,14 @@ class Chart extends Component {
             { capitalize(ALT_METRIC) }
           </Checkbox>
           <Radio
-            list={ this.getInputOptions('sex') }
+            list={ radioOptions }
             capitalize={ capitalize }
             name="sex"
             selected={ sex }
             onChange={ this.handleChange }
           />
           <Dropdown
-            list={ this.getInputOptions('year') }
+            list={ dropdownOptions }
             name="year"
             value={ year }
             onChange={ this.handleChange }
