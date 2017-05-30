@@ -24,5 +24,5 @@ export const CHART_OPTIONS = {
   yAxisTicks: 6,
   yAxisFormat: '%',
   easeType: 'easeExp',
-  easeDuration: 1250
+  easeDuration: 1000
 };

@@ -2,12 +2,12 @@ import React from 'react';
 import './index.css';
 
 const Radio = ({ list, capitalize, name, selected, onChange }) =>
-  <form className='radio'>
+  <form className="radio">
     { list.map(item =>
       <label key={ item }>
         <input
           name={ name }
-          type='radio'
+          type="radio"
           value={ item }
           checked={ selected === item }
           onChange={ onChange }

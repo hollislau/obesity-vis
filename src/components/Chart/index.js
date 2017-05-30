@@ -15,7 +15,10 @@ import {
 } from '../../constants';
 import './index.css';
 
+// TODO move inputOptions to state?
 // TODO only use needed d3 modules
+// TODO add prop types
+// TODO add snapshot tests
 
 const capitalize = str =>
   str[0].toUpperCase() + str.slice(1);
@@ -98,9 +101,9 @@ class Chart extends Component {
           chartData={ chartData }
           { ...CHART_OPTIONS }
         />
-        <div className='controls'>
+        <div className="controls">
           <Checkbox
-            name='metric'
+            name="metric"
             selected={ metric }
             setting={ ALT_METRIC }
             onChange={ this.handleChange }
@@ -110,13 +113,13 @@ class Chart extends Component {
           <Radio
             list={ this.getInputOptions('sex') }
             capitalize={ capitalize }
-            name='sex'
+            name="sex"
             selected={ sex }
             onChange={ this.handleChange }
           />
           <Dropdown
             list={ this.getInputOptions('year') }
-            name='year'
+            name="year"
             value={ year }
             onChange={ this.handleChange }
           />

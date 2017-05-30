@@ -6,7 +6,7 @@ const Checkbox = ({ name, selected, setting, onChange, children }) =>
       { children }
       <input
         name={ name }
-        type='checkbox'
+        type="checkbox"
         checked={ selected === setting }
         onChange={ onChange }
       />

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
-import DataBars from '../DataBars';
+import DataBar from '../DataBar';
 import XYAxis from '../XYAxis';
 import './index.css';
 
@@ -18,7 +18,7 @@ const yScale = ({ chartData, yProp, chartHeight, chartPadding }) =>
     .range([chartHeight - chartPadding, chartPadding]);
 
 const BarChart = props => {
-  const { chartWidth, chartHeight } = props;
+  const { chartData, xProp, chartWidth, chartHeight } = props;
   const scales = {
     xScale: xScale(props),
     yScale: yScale(props)
@@ -26,14 +26,18 @@ const BarChart = props => {
 
   return (
     <svg
-      className='bar-chart'
+      className="bar-chart"
       width={ chartWidth }
       height={ chartHeight }
     >
-      <DataBars
-        { ...props }
-        { ...scales }
-      />
+      { chartData.map(d =>
+        <DataBar
+          key={ d[xProp] }
+          d={ d }
+          { ...props }
+          { ...scales }
+        />
+      )}
       <XYAxis
         { ...props }
         { ...scales }
