@@ -19,7 +19,6 @@ import {
 } from '../../constants';
 import './index.css';
 
-// TODO only use needed d3 modules
 // TODO add prop types
 // TODO add snapshot tests
 
