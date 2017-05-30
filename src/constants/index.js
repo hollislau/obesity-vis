@@ -23,6 +23,6 @@ export const CHART_OPTIONS = {
   barPadding: 0.1,
   yAxisTicks: 6,
   yAxisFormat: '%',
-  easeType: 'easeExp',
-  easeDuration: 1000
+  easeDuration: 1000,
+  easeType: 'easeExp'
 };

@@ -21,8 +21,8 @@ class DataBar extends Component {
       chartHeight,
       chartPadding,
       yScale,
-      easeType,
-      easeDuration
+      easeDuration,
+      easeType
     } = nextProps;
     const y = yScale(d[yProp]);
     const height = chartHeight - chartPadding - y;
@@ -31,8 +31,8 @@ class DataBar extends Component {
       let node = d3.select(this.bar);
 
       node.transition()
-        .ease(d3[easeType])
         .duration(easeDuration)
+        .ease(d3[easeType])
         .attr('y', y)
         .attr('height', height)
         .on('end', () =>

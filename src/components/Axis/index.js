@@ -4,13 +4,13 @@ import './index.css';
 
 class Axis extends Component {
   renderAxis = ease => {
-    const { easeType, easeDuration, axis } = this.props
+    const { easeDuration, easeType, axis } = this.props
     const node = d3.select(this.axis);
 
     if (ease) {
       node.transition()
-        .ease(d3[easeType])
         .duration(easeDuration)
+        .ease(d3[easeType])
         .call(axis);
     } else {
       node.call(axis);
