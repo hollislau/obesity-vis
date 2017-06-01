@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import './index.css';
 
@@ -62,5 +63,19 @@ class DataBar extends Component {
     );
   }
 }
+
+DataBar.propTypes = {
+  d: PropTypes.objectOf(
+    PropTypes.string.isRequired
+  ).isRequired,
+  xProp: PropTypes.string.isRequired,
+  yProp: PropTypes.string.isRequired,
+  chartHeight: PropTypes.number.isRequired,
+  chartPadding: PropTypes.number.isRequired,
+  xScale: PropTypes.func.isRequired,
+  yScale: PropTypes.func.isRequired,
+  easeDuration: PropTypes.number.isRequired,
+  easeType: PropTypes.string.isRequired
+};
 
 export default DataBar;

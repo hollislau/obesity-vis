@@ -7,10 +7,10 @@ export const ALT_METRIC = DEFAULT_METRIC === 'obese'
   : 'obese';
 
 export const DATA_URL = './us_data.csv';
-export const SEX_ID = 'sex';
-export const YEAR_ID = 'year';
-export const AGE_ID = 'age_group_id';
-export const AGE_GROUP = 34;
+export const SEX_PROP = 'sex';
+export const YEAR_PROP = 'year';
+export const AGE_PROP = 'age_group_id';
+export const AGE_ID = 34;
 
 export const SEX_MAP = {
   both: 'individuals',

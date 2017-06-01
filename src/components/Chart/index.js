@@ -10,17 +10,14 @@ import {
   DEFAULT_YEAR,
   ALT_METRIC,
   DATA_URL,
-  SEX_ID,
-  YEAR_ID,
+  SEX_PROP,
+  YEAR_PROP,
+  AGE_PROP,
   AGE_ID,
-  AGE_GROUP,
   SEX_MAP,
   CHART_OPTIONS
 } from '../../constants';
 import './index.css';
-
-// TODO add prop types
-// TODO add snapshot tests
 
 const capitalize = str =>
   str[0].toUpperCase() + str.slice(1);
@@ -47,11 +44,20 @@ class Chart extends Component {
 
       srcData = data;
       this.setState({
-        radioOptions: this.getInputOptions(SEX_ID),
-        dropdownOptions: this.getInputOptions(YEAR_ID)
+        radioOptions: this.getInputOptions(SEX_PROP),
+        dropdownOptions: this.getInputOptions(YEAR_PROP)
       });
       this.setChartData();
     });
+  }
+
+  getInputOptions = prop =>
+    srcData.map(item => item[prop])
+      .sort()
+      .filter((item, i, arr) => item !== arr[i - 1]);
+
+  setChartData = () => {
+    this.setState({ chartData: this.filterData() });
   }
 
   filterData = () => {
@@ -62,18 +68,9 @@ class Chart extends Component {
         item.metric === metric &&
         item.sex === sex &&
         item.year === year &&
-        item[AGE_ID] <= AGE_GROUP
+        item[AGE_PROP] <= AGE_ID
       )
     );
-  }
-
-  getInputOptions = prop =>
-    srcData.map(item => item[prop])
-      .sort()
-      .filter((item, i, arr) => item !== arr[i - 1]);
-
-  setChartData = () => {
-    this.setState({ chartData: this.filterData() });
   }
 
   handleChange = e => {

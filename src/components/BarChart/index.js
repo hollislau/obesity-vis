@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import DataBar from '../DataBar';
 import XYAxis from '../XYAxis';
@@ -44,6 +45,20 @@ const BarChart = props => {
       />
     </svg>
   );
+};
+
+BarChart.propTypes = {
+  chartData: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.string.isRequired
+    ).isRequired
+  ).isRequired,
+  xProp: PropTypes.string.isRequired,
+  yProp: PropTypes.string.isRequired,
+  chartWidth: PropTypes.number.isRequired,
+  chartHeight: PropTypes.number.isRequired,
+  chartPadding: PropTypes.number.isRequired,
+  barPadding: PropTypes.number.isRequired
 };
 
 export default BarChart;

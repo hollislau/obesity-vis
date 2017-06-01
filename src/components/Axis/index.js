@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import './index.css';
 
@@ -36,5 +37,12 @@ class Axis extends Component {
     );
   }
 }
+
+Axis.propTypes = {
+  easeDuration: PropTypes.number.isRequired,
+  easeType: PropTypes.string.isRequired,
+  axis: PropTypes.func.isRequired,
+  translate: PropTypes.string.isRequired
+};
 
 export default Axis;
