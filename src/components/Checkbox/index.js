@@ -19,6 +19,7 @@ Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
   setting: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
 };

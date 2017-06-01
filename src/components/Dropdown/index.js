@@ -26,6 +26,7 @@ Dropdown.propTypes = {
   ).isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired
 };
 

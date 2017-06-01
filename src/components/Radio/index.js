@@ -26,6 +26,7 @@ Radio.propTypes = {
   capitalize: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired
 };
 

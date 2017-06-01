@@ -78,7 +78,8 @@ DataBar.propTypes = {
   xScale: PropTypes.func.isRequired,
   yScale: PropTypes.func.isRequired,
   easeDuration: PropTypes.number.isRequired,
-  easeType: PropTypes.string.isRequired
+  easeType: PropTypes.string.isRequired,
+  enableInputs: PropTypes.func.isRequired
 };
 
 export default DataBar;
