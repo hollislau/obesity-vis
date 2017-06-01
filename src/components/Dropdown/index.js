@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Dropdown = ({ list, name, value, onChange }) =>
+const Dropdown = ({ list, name, value, disabled, onChange }) =>
   <form>
     <select
       name={ name }
       value={ value }
+      disabled={ disabled }
       onChange={ onChange }
     >
       { list.map(item =>

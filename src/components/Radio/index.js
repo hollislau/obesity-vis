@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const Radio = ({ list, capitalize, name, selected, onChange }) =>
+const Radio = ({ list, capitalize, name, selected, disabled, onChange }) =>
   <form className="radio">
     { list.map(item =>
       <label key={ item }>
@@ -11,6 +11,7 @@ const Radio = ({ list, capitalize, name, selected, onChange }) =>
           type="radio"
           value={ item }
           checked={ selected === item }
+          disabled={ disabled }
           onChange={ onChange }
         />
         { capitalize(item) }

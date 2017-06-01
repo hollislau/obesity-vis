@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({ name, selected, setting, onChange, children }) =>
+const Checkbox = ({ name, selected, setting, disabled, onChange, children }) =>
   <form>
     <label>
       { children }
@@ -9,6 +9,7 @@ const Checkbox = ({ name, selected, setting, onChange, children }) =>
         name={ name }
         type="checkbox"
         checked={ selected === setting }
+        disabled={ disabled }
         onChange={ onChange }
       />
     </label>

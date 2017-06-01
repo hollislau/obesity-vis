@@ -27,6 +27,6 @@ export const CHART_OPTIONS = {
   barPadding: 0.1,
   yAxisTicks: 6,
   yAxisFormat: '%',
-  easeDuration: 1000,
+  easeDuration: 750,
   easeType: 'easeExp'
 };

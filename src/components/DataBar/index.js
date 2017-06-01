@@ -23,7 +23,8 @@ class DataBar extends Component {
       chartPadding,
       yScale,
       easeDuration,
-      easeType
+      easeType,
+      enableInputs
     } = nextProps;
     const y = yScale(d[yProp]);
     const height = chartHeight - chartPadding - y;
@@ -36,11 +37,13 @@ class DataBar extends Component {
         .ease(d3[easeType])
         .attr('y', y)
         .attr('height', height)
-        .on('end', () =>
+        .on('end', () => {
           this.setState({
             y: y,
             height: height
-          }));
+          });
+          enableInputs();
+        });
     }
   }
 

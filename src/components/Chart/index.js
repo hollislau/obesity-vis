@@ -32,13 +32,14 @@ class Chart extends Component {
       chartData: null,
       radioOptions: null,
       dropdownOptions: null,
+      inputsDisabled: false,
       metric: DEFAULT_METRIC,
       sex: DEFAULT_SEX,
       year: DEFAULT_YEAR
     };
   }
 
-  loadSrcData = () => {
+  loadSrcData = () =>
     d3.csv(DATA_URL, (err, data) => {
       if (err) return console.log(`Unable to load source data: ${ err }`);
 
@@ -49,16 +50,13 @@ class Chart extends Component {
       });
       this.setChartData();
     });
-  }
 
   getInputOptions = prop =>
     srcData.map(item => item[prop])
       .sort()
       .filter((item, i, arr) => item !== arr[i - 1]);
 
-  setChartData = () => {
-    this.setState({ chartData: this.filterData() });
-  }
+  setChartData = () => this.setState({ chartData: this.filterData() });
 
   filterData = () => {
     const { metric, sex, year } = this.state;
@@ -72,6 +70,8 @@ class Chart extends Component {
       )
     );
   }
+
+  enableInputs = () => this.setState({ inputsDisabled: false });
 
   handleChange = e => {
     const { target } = e;
@@ -88,7 +88,10 @@ class Chart extends Component {
       }
     }
 
-    this.setState({ [name]: value }, this.setChartData);
+    this.setState({
+      [name]: value,
+      inputsDisabled: true
+    }, this.setChartData);
   }
 
   componentDidMount() {
@@ -100,6 +103,7 @@ class Chart extends Component {
       chartData,
       radioOptions,
       dropdownOptions,
+      inputsDisabled,
       metric,
       sex,
       year
@@ -118,6 +122,7 @@ class Chart extends Component {
         <h2>Prevalence of { metric } { SEX_MAP[sex] } in the U.S. in { year }, by age</h2>
         <BarChart
           chartData={ chartData }
+          enableInputs={ this.enableInputs }
           { ...CHART_OPTIONS }
         />
         <div className="controls">
@@ -125,6 +130,7 @@ class Chart extends Component {
             name="metric"
             selected={ metric }
             setting={ ALT_METRIC }
+            disabled={ inputsDisabled }
             onChange={ this.handleChange }
           >
             { capitalize(ALT_METRIC) }
@@ -134,12 +140,14 @@ class Chart extends Component {
             capitalize={ capitalize }
             name="sex"
             selected={ sex }
+            disabled={ inputsDisabled }
             onChange={ this.handleChange }
           />
           <Dropdown
             list={ dropdownOptions }
             name="year"
             value={ year }
+            disabled={ inputsDisabled }
             onChange={ this.handleChange }
           />
         </div>
